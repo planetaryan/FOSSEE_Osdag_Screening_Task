@@ -59,17 +59,6 @@ def create_purlin_layout(num_purlins, purlin_width, purlin_height, purlin_depth,
     
     return purlins
 
-def create_rafter(length, width, purlin_depth, rafter_flange_thickness, rafter_web_thickness, angle):
-    # Create I-section for rafter
-    rafter = create_i_section(length, width, purlin_depth, rafter_flange_thickness, rafter_web_thickness)
-    
-    # Rotate rafter to specified angle
-    rotation = gp_Trsf()
-    rotation.SetRotation(gp_Ax1(gp_Pnt(0, 0, 0), gp_Dir(0, 1, 0)), math.radians(angle))
-    rotated_rafter = BRepBuilderAPI_Transform(rafter, rotation, True).Shape()
-    
-    return rotated_rafter
-
 def create_portal_frame(column_length, column_width, column_height, column_flange_thickness, column_web_thickness,
                         rafter_width, rafter_depth, rafter_flange_thickness, rafter_web_thickness, rafter_angle, num_rafters,
                         purlin_width, purlin_height, purlin_depth):
